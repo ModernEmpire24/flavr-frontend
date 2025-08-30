@@ -11,7 +11,7 @@ function useLocal(key, initial) {
   return [val, setVal];
 }
 
-const grad = "bg-gradient-to-tr from-orange-400 via-orange-500 to-rose-500";
+const grad = "bg-gradient-to-tr from-flame-500 via-coral-500 to-rose-500";
 const ring = "focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2";
 const RAW = import.meta.env?.VITE_COLLECTOR_URL || "http://localhost:8080";
 const COLLECTOR = RAW.replace(/\/+$/, "");
