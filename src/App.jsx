@@ -3,6 +3,20 @@ import Planner from "./components/Planner.jsx";
 import Connections from "./components/Connections.jsx";
 import { supabase } from "./lib/supabase";
 
+function PlatformBadge({ platform }) {
+  const p = (platform || "").toLowerCase();
+  const icon = p.includes("youtube") ? "▶️"
+             : p.includes("instagram") ? "📸"
+             : p.includes("tiktok") ? "🎵"
+             : p.includes("pinterest") ? "📌"
+             : "🌐";
+  return (
+    <span className="inline-flex items-center gap-1 rounded-xl bg-flame-50 px-2 py-1 text-[11px] font-medium text-flame-700 ring-1 ring-flame-200">
+      <span>{icon}</span><span>{platform}</span>
+    </span>
+  );
+}
+
 function useLocal(key, initial) {
   const [val, setVal] = useState(() => {
     try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : initial; } catch { return initial; }
@@ -135,19 +149,24 @@ export default function App() {
             <div className="space-y-6 lg:col-span-9">
               <Card className="p-4"><SectionTitle title="Trending recipes" subtitle="Across the web" /><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {recipes.map((r) => (
-                  <Card key={r.id} className="overflow-hidden">
-                    <img src={r.image} className="h-40 w-full object-cover"/>
-                    <div className="p-3">
-                      <div className="font-semibold">{r.title}</div>
-                      <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
-                        <span>⏱ {r.time || 20} min</span>
-                        <div className="flex gap-2">
-                          <Button variant="soft" onClick={()=>addToList(r)}>Add</Button>
-                          <Button variant="outline" onClick={()=>toggleFav(r.id)}>{ (favorites.includes(r.id) ? "★" : "☆") }</Button>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
+ <Card key={r.id} className="overflow-hidden hover:shadow-soft transition-shadow">
+  <img src={r.image} className="h-40 w-full object-cover" />
+  <div className="p-3 space-y-2">
+    <div className="flex items-start justify-between gap-2">
+      <div className="font-semibold leading-tight line-clamp-2">{r.title}</div>
+      {r.source?.platform && <PlatformBadge platform={r.source.platform} />}
+    </div>
+    <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
+      <span>⏱ {r.time || 20} min</span>
+      <div className="flex gap-2">
+        <Button variant="soft" onClick={()=>addToList(r)}>Add</Button>
+        <a href={r.source?.url} target="_blank" rel="noreferrer"
+           className="rounded-2xl border border-orange-200 px-3 py-1 hover:bg-orange-50">Open</a>
+      </div>
+    </div>
+  </div>
+</Card>
+
                 ))}
               </div></Card>
               <ImportPanel onImported={(r)=>setRecipes((cur)=>[r, ...cur])} />
