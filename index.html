@@ -4,28 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flavr</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-        colors: {
-          flame: { 50:'#fff3e9', 100:'#ffe4cc', 200:'#ffc499', 300:'#ffa566', 400:'#ff7f33', 500:'#ff5a1f', 600:'#e04410', 700:'#b3360d', 800:'#7a2609', 900:'#451506' },
-          coral: { 50:'#fff1f0', 100:'#ffd9d5', 200:'#ffb4ad', 300:'#ff8e85', 400:'#ff6a5e', 500:'#ff4a3b', 600:'#e13a2d', 700:'#b62f25', 800:'#7a2019', 900:'#40110d' }
+    <script src="https://cdn.tailwindcss.com"></script></head
+  ><link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            flame: {
+              50: '#fff3e9',
+              100: '#ffe4cc',
+              200: '#ffc499',
+              300: '#ffa566',
+              400: '#ff7f33',
+              500: '#ff5a1f',
+              600: '#e04410',
+              700: '#b3360d',
+              800: '#7a2609',
+              900: '#451506',
+            },
+            coral: {
+              50: '#fff1f0',
+              100: '#ffd9d5',
+              200: '#ffb4ad',
+              300: '#ff8e85',
+              400: '#ff6a5e',
+              500: '#ff4a3b',
+              600: '#e13a2d',
+              700: '#b62f25',
+              800: '#7a2019',
+              900: '#40110d',
+            },
+          },
+          boxShadow: {
+            soft: '0 6px 30px -10px rgba(255,90,31,.35)',
+            glow: '0 0 0 6px rgba(255,90,31,.08)',
+          },
         },
-        boxShadow: {
-          'soft': '0 6px 30px -10px rgba(255,90,31,.35)',
-          'glow': '0 0 0 6px rgba(255,90,31,.08)'
-        }
-      }
+      },
     }
-  }
-</script>
-<style>
-  body { font-family: Inter, system-ui, sans-serif; }
-</style>
+  </script>
+  <style>
+    body {
+      font-family: Inter, system-ui, sans-serif;
+    }
+  </style>
   <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
